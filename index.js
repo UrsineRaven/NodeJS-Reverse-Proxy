@@ -33,14 +33,14 @@ app.use(function(req,res,next){
             return proxy.web(req, res, {
                 target: target
             }, function(e) {
-                console.err('PROXY ERR', e, req.ip, '=>', req.hostname, req.originalUrl);
+                console.error('PROXY ERR', e, req.ip, '=>', req.hostname, req.originalUrl);
             });
         } else {
             debug("No target found for %o", req.hostname);
             res.sendStatus(404);
         }
     } catch(e) {
-        console.err('APP ERR', e);
+        console.error('APP ERR', e);
         res.sendStatus(500);
     }
 });
