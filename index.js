@@ -1,9 +1,12 @@
+var packageInfo = require('./package.json');
 var https = require('https');
 var httpProxy = require('http-proxy');
 var express = require('express');
 var jsyaml = require('js-yaml');
 var fs = require('fs');
+var debug = require('debug')(packageInfo.name);
 
+debug("starting %s",packageInfo.name);
 var config = jsyaml.safeLoad(fs.readFileSync(__dirname + '/config.yml', 'utf8'));
 
 var proxy = httpProxy.createProxy();
@@ -13,29 +16,31 @@ app.set('trust proxy', true);
 app.set('subdomain offset', (config && config.subdomainOffset) || 2);
 app.use(function(req,res,next){
     try{
-        console.dir(req.subdomains);
+        debug("subdomain array: %o",req.subdomains);
         var subdomains = req.subdomains.slice();
         var target = config && config.proxyRules;
         while (subdomains.length > 0 && typeof target !== 'string') {
             var sd = subdomains.shift();
             target = target && target[sd];
         }
-        console.dir(target);
+        debug("intermediate calculated target: %o",target);
         if (typeof target === 'object') {
             target = target[null];
         }
-        console.dir(target);
+        debug("final calculated target: %o",target);
         if (typeof target === 'string') {
-            //console.log("TARGET", target, req.url);
+            debug("proxying %o to %o",req.url,target);
             return proxy.web(req, res, {
                 target: target
             }, function(e) {
-                //console.log('PROXY ERR', e, req.ip, '=>', req.hostname, req.originalUrl);
+                console.err('PROXY ERR', e, req.ip, '=>', req.hostname, req.originalUrl);
             });
         } else {
+            debug("No target found for %o", req.hostname);
             res.sendStatus(404);
         }
     } catch(e) {
+        console.err('APP ERR', e);
         res.sendStatus(500);
     }
 });

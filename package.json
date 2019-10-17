@@ -1,9 +1,10 @@
 {
-  "name": "server-reverse-proxy",
+  "name": "nodejs-reverse-proxy",
   "version": "1.0.0",
-  "description": "reverse proxy for my server",
+  "description": "Reverse proxy written using NodeJS. Intended to eventually be used as an addon for Hass.io",
   "main": "index.js",
   "dependencies": {
+    "debug": "^4.1.1",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "http": "0.0.0",
@@ -18,7 +19,8 @@
   },
   "keywords": [
     "reverse",
-    "proxy"
+    "proxy",
+    "nodejs"
   ],
   "author": "UrsineRaven",
   "license": "ISC"
