@@ -1,0 +1,6 @@
+nodejs/
+node_modules/
+
+*~
+*.pem
+*.bak

@@ -1,0 +1,10 @@
+subdomainOffset: 3  # The number of dot separated parts of host to remove to get to the subdomain(s). For example: 2 would remove example.com from abc.example.com
+defaultDestination: &defaultDest localhost:8080
+proxyRules:  # NOTE: All keys must be lowercase, and ~ means empty. There is no limit to the nesting (at least no limits imposed by the logic of this proxy).
+    ~: *defaultDest  # no subdomain
+    www: *defaultDest
+    https-example: https://localhost:8123
+    http-example: localhost:3000
+    subsubdomain-example:
+        ~: localhost:3030  # no subsubdomain
+        subsubdomain: localhost:3031
