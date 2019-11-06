@@ -31,7 +31,8 @@ app.use(function(req,res,next){
         if (typeof target === 'string') {
             debug("proxying %o to %o",req.url,target);
             return proxy.web(req, res, {
-                target: target
+                target: target,
+                xfwd: true
             }, function(e) {
                 console.error('PROXY ERR', e, req.ip, '=>', req.hostname, req.originalUrl);
             });
