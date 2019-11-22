@@ -1,6 +1,6 @@
 # NodeJS-Reverse-Proxy
 
-A reverse proxy written in NodeJS. Currently only supports proxying based on sub-domains, but supports multiple levels of sub-domains. I plan to eventually make an add-on for Hass.io based on this.
+A reverse proxy written in NodeJS. Currently only supports proxying based on subdomains, but supports multiple levels of subdomains. I plan to eventually make an add-on for Hass.io based on this.
 
 ## Installation
 
@@ -27,4 +27,4 @@ Report issues or suggestions to the *Issues* tab on the [GitHub page](https://gi
 
 ## License
 
-I haven't picked one yet, but I provide no warranty and I'm not liable if you choose to use this and something goes awry. Also, if you use this code for anything, give me credit; Don't just steal it and claim it as your own work.
+I haven't picked one yet, but I provide no warranty, and I'm not liable if you choose to use this and something goes awry. Also, if you use this code for anything, give me credit; Don't just steal it and claim it as your own work.
