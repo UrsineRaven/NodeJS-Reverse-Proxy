@@ -7,7 +7,7 @@ var fs = require('fs');
 var debug = require('debug')(packageInfo.name);
 
 debug("starting %s",packageInfo.name);
-var config = jsyaml.safeLoad(fs.readFileSync(__dirname + '/config.yml', 'utf8'));
+var config = jsyaml.load(fs.readFileSync(__dirname + '/config.yml', 'utf8'));
 
 var proxy = httpProxy.createProxy();
 
